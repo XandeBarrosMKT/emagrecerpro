@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="assets/LOGO.png">
+  <title>Emagrecer PRO</title>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    html {
+      font-family: sans-serif;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    article,
+    aside,
+    figcaption,
+    figure,
+    footer,
+    header,
+    hgroup,
+    main,
+    nav,
+    section {
+      display: block;
+    }
+
+    body {
+      margin: 0;
+      text-align: left;
+    }
+
+    button,
+    [type='button'],
+    [type='reset'],
+    [type='submit'] {
+      -webkit-appearance: button;
+      appearance: button;
+    }
+
+    button::-moz-focus-inner,
+    [type='button']::-moz-focus-inner,
+    [type='reset']::-moz-focus-inner,
+    [type='submit']::-moz-focus-inner {
+      border-style: none;
+      padding: 0;
+    }
+
+    .hide-delayed {
+      display: none !important;
+    }
+
+    .header {
+      background-color: #0c9462;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      padding: 16px 32px;
+    }
+
+    .container {
+      position: relative;
+      height: 0;
+      width: 0;
+    }
+
+    .logo {
+      border-radius: 50%;
+      width: 250px;
+      position: absolute;
+      z-index: 1;
+      top: 25vw;
+      left: 4px;
+    }
+
+    .header div {
+      padding: 16px;
+    }
+
+    .header div>h1 {
+      background-color: #ff8400;
+      color: #fafafa;
+      font-size: xx-large;
+      font-weight: bold;
+      text-align: center;
+      padding: 0 16px;
+    }
+
+    .video {
+      background-color: #ff8400;
+      color: #fafafa;
+      font-size: large;
+      font-weight: bold;
+      text-align: center;
+      padding: 0 16px;
+      margin-bottom: 16px;
+    }
+
+    iframe {
+      border-radius: 8px;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      margin-bottom: 16px;
+      z-index: 2;
+    }
+
+    p {
+      color: #fafafa;
+      font-size: large;
+      font-weight: bold;
+      text-align: center;
+      padding: 0 16px;
+      margin-bottom: 16px;
+    }
+
+    .cta-button {
+      background-color: #ff8400;
+      color: #fafafa;
+      font-weight: bold;
+      padding: 15px 100px;
+      border-radius: 25px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+
+    .cta-button:hover {
+      background-color: #e06f00;
+    }
+
+    .info {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .header img {
+      margin-bottom: 16px;
+    }
+
+    .new-section {
+      background-color: #ff8400;
+      text-align: center;
+      padding: 16px 0;
+    }
+
+    .new-section>h1 {
+      color: #fafafa;
+      display: inline;
+      width: 100vw;
+      padding: auto;
+      font-size: xx-large;
+      font-weight: bold;
+      padding: 0 16px;
+    }
+
+    .info {
+      background-color: #153a28;
+      padding: 16px 32px;
+    }
+
+    .info .cards {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .info .card {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      width: 350px;
+      height: 150px;
+      padding: 16px;
+      gap: 8px;
+      border-radius: 16px;
+      background-color: #0d1732;
+      justify-content: space-between;
+    }
+
+    .info img {
+      width: 32px;
+    }
+
+    .bonus {
+      background-color: #0c9462;
+      display: flex;
+      padding: 16px 32px;
+    }
+
+    .bonus .esq {
+      width: 50%;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: #fafafa;
+    }
+
+    .bonus .esq h2 {
+      font-size: xx-large;
+      text-decoration: underline;
+      margin-bottom: 8px;
+    }
+
+    .bonus .esq p {
+      text-align: left;
+      padding: 0;
+
+      font-weight: 400;
+    }
+
+    .bonus .dir {
+      display: flex;
+      padding: 16px;
+      flex-direction: column;
+      align-self: center;
+    }
+
+    .bonus .dir .card-bonus {
+      width: auto;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      height: 150px;
+      padding: 16px;
+      gap: 8px;
+      margin-bottom: 8px;
+      border-radius: 16px;
+      background-color: #0d1732;
+      justify-content: space-between;
+    }
+
+    .bonus .dir .card-bonus img {
+      width: 32px;
+    }
+
+    .bonus .dir img {
+      width: auto;
+    }
+
+    .bonus .dir a {
+      margin-top: 16px;
+    }
+
+    .depoimentos {
+      background: rgb(155, 105, 12);
+      background: linear-gradient(340deg, rgba(155, 105, 12, 1) 35%, rgba(158, 146, 38, 1) 100%);
+      padding: 16px 32px;
+    }
+
+    .depoimentos h1 {
+      color: #fafafa;
+      font-size: xx-large;
+      text-align: center;
+    }
+
+    .depoimentos div {
+      margin-top: 16px;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .garantia {
+      background-color: #153a28;
+      padding: 16px 32px;
+    }
+
+    .garantia h1 {
+      color: #fafafa;
+      text-align: center;
+      font-size: xx-large;
+      margin-bottom: 16px;
+    }
+
+    .garantia .divisao {
+      display: flex;
+    }
+
+    .garantia .esq {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: #fafafa;
+    }
+
+    .garantia .esq img {
+      width: 350px;
+      margin: 0 auto;
+    }
+
+    .garantia .dir {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      color: #fafafa;
+      align-self: center;
+    }
+
+    .garantia .dir p {
+      margin-top: 16px;
+      text-align: left;
+      padding: 0;
+      font-weight: 400;
+    }
+
+    .final {
+      background: rgb(155, 105, 12);
+      background: linear-gradient(340deg, rgba(155, 105, 12, 1) 35%, rgba(158, 146, 38, 1) 100%);
+      padding: 16px 32px;
+    }
+
+    .final h1 {
+      color: #fafafa;
+      font-size: xx-large;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .final .beneficios {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
+
+    .final .beneficios .benef-cards {
+      background: #fafafa;
+      width: 250px;
+      height: 150px;
+      padding: 16px;
+      border-radius: 16px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .final .beneficios .benef-cards p {
+      color: #141436;
+      font-weight: bold;
+      font-size: x-large;
+    }
+
+    .final .total {
+      margin-top: 16px;
+      color: #141436;
+      font-weight: 900;
+      font-size: x-large;
+    }
+
+    .botao {
+      margin-top: 16px;
+    }
+
+    .final .botao {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .botao img {
+      width: 400px;
+    }
+
+    .oferta {
+      margin-top: 16px;
+    }
+
+    .oferta h3 {
+      color: #fafafa;
+      text-align: center;
+      font-weight: 400;
+    }
+
+    .oferta h2 {
+      color: #fafafa;
+      text-align: center;
+      font-size: 72px;
+    }
+
+    .info .pergunta {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      width: 350px;
+      height: 500px;
+      padding: 16px;
+      gap: 8px;
+      border-radius: 16px;
+      background-color: #0d1732;
+      justify-content: space-evenly;
+    }
+
+    .info .pergunta p {
+      font-weight: 400;
+    }
+
+    .info .pergunta span {
+      font-size: x-large;
+      font-weight: 700;
+    }
+
+    footer {
+      background-color: #1c1c1c;
+      padding: 16px 32px;
+      text-align: center;
+    }
+
+    footer img {
+      width: 64px;
+      border-radius: 4px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    footer p {
+      margin-top: 16px;
+      font-weight: 400;
+    }
+
+    footer small {
+      color: #fafafa;
+    }
+
+
+    @media only screen and (max-width: 600px) {
+      .logo {
+        width: 64px;
+        top: 30vw;
+        left: 4px;
+      }
+
+      iframe {
+        width: calc(100vw - 10%);
+      }
+
+      .header img {
+        width: calc(100vw - 10%);
+      }
+
+      .info {
+        padding: 16px;
+      }
+
+      .info .card {
+        width: 100%;
+      }
+
+      .bonus {
+        flex-direction: column;
+        padding: 8px;
+      }
+
+      .bonus .esq {
+        width: 100%;
+        text-align: center;
+      }
+
+      .bonus .esq p {
+        margin-top: 8px;
+        text-align: center;
+      }
+
+      .bonus .dir {
+        width: calc(100%);
+      }
+
+      .depoimentos div {
+        flex-direction: column;
+        padding: 16px;
+      }
+
+      .depoimentos div iframe {
+        width: 100%;
+      }
+
+      .garantia {
+        padding: 16px;
+      }
+
+      .garantia .divisao {
+        flex-direction: column;
+      }
+
+      .garantia .esq {
+        width: 100%;
+      }
+
+      .garantia .esq img {
+        width: 100%;
+        margin: 16px 0;
+      }
+
+      .garantia .dir {
+        width: 100%;
+        text-align: center;
+      }
+
+      .garantia .dir p {
+        text-align: center;
+      }
+
+      .final .beneficios {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .botao img {
+        width: calc(100vw - 10%);
+      }
+
+      footer p {
+        font-size: 12px;
+      }
+
+      footer small {
+        font-size: 8px;
+      }
+
+      .info .pergunta {
+        width: 100%;
+      }
+    }
+  </style>
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700&amp;display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700&amp;display=swap">
+</head>
+
+<body>
+  <div class="conteiner">
+    <img src="assets/LOGO.png" alt="Logo do Produto" class="logo">
+  </div>
+  <section class="header">
+    <div>
+      <h1>ELAS EMAGRECERAM MUITO, SEM DIETAS RESTRITIVAS,</h1>
+      <h1>SEM SOFRER NA ACADEMIA E SEM GASTAR MUITO.</h1>
+
+    </div>
+
+    <p class="video">Veja o vídeo abaixo e entenda o nosso método:</p>
+
+    <iframe width="900" height="506" src="https://www.youtube.com/embed/91X-w1hu2Pw" title="ASSISTA AO VÍDEO"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+    </iframe>
+
+    <p style="background-color: none;">
+      ACESSO VITALÍCIO POR APENAS 9x de R$ 5,12
+    </p>
+
+    <a href="https://pay.kiwify.com.br/66crfxn?afid=EiYsjvBA" class="cta-button">QUERO COMEÇAR A EMAGRECER!</a>
+    <img src="assets/formas-de-pagamento.png" alt="Formas de Pagamento">
+
+  </section>
+  <div class="new-section">
+    <h1>O EMAGRECER PRO É PARA QUEM:</h1>
+  </div>
+  <section class="info">
+    <div class="cards">
+      <div class="card">
+        <img src="assets/1checked.png" alt="Sinal de check">
+        <p>Já testou várias dietas e nunca teve resultado.</p>
+      </div>
+      <div class="card">
+        <img src="assets/1checked.png" alt="Sinal de check">
+        <p>Não tem tempo de ir na academia.</p>
+      </div>
+      <div class="card">
+        <img src="assets/1checked.png" alt="Sinal de check">
+        <p>Quer resultados rápidos.</p>
+      </div>
+      <div class="card">
+        <img src="assets/1checked.png" alt="Sinal de check">
+        <p>Não consegue mais se olhar no espelho.</p>
+      </div>
+      <div class="card">
+        <img src="assets/1checked.png" alt="Sinal de check">
+        <p>Quer melhorar a saúde e ter qualidade de vida.</p>
+      </div>
+    </div>
+    <a href="https://pay.kiwify.com.br/66crfxn?afid=EiYsjvBA" class="cta-button">SIM, O EMAGRECER PRO É PARA MIM!</a>
+  </section>
+  <section class="bonus">
+    <div class="esq">
+      <h2>Você ainda vai levar somente HOJE:</h2>
+      <p>GARANTA AGORA O NOSSO GUIA EMAGRECER PRO E GANHE 07 BÔNUS VALIOSOS E PODEROSOS PARA TRANSFORMAR SEU CORPO,
+        MENTE E SUA SAÚDE.
+      </p>
+    </div>
+    <div class="dir">
+      <div class="card-bonus">
+        <img src="assets/bonus.png" alt="Imagem de Bônus">
+        <p>BÔNUS 1:
+          <br>
+          200 RECEITAS LOWCARB
+        </p>
+      </div>
+      <div class="card-bonus">
+        <img src="assets/bonus.png" alt="Imagem de Bônus">
+        <p>BÔNUS 2:
+          <br>
+          Receitas saudáveis para suas refeições
+        </p>
+      </div>
+      <div class="card-bonus"><img src="assets/bonus.png" alt="Imagem de Bônus">
+        <p>BÔNUS 3:
+          <br>
+          Exercícios funcionais
+        </p>
+      </div>
+      <div class="card-bonus"><img src="assets/bonus.png" alt="Imagem de Bônus">
+        <p>BÔNUS 4:
+          <br>
+          Guia de saladas
+        </p>
+      </div>
+      <div class="card-bonus"><img src="assets/bonus.png" alt="Imagem de Bônus">
+        <p>
+          BÔNUS 5:
+          <br>
+          Marmitas FIT
+        </p>
+      </div>
+      <div class="card-bonus"><img src="assets/bonus.png" alt="Imagem de Bônus">
+        <p>
+          BÔNUS 6:
+          <br>
+          Sem ansiedade e compulsão alimentar
+        </p>
+      </div>
+      <div class="card-bonus"><img src="assets/bonus.png" alt="Imagem de Bônus">
+        <p>
+          BÔNUS 7:
+          <br>
+          Diga adeus ao efeito sanfona e nunca mais volte a engordar
+        </p>
+      </div>
+      <a href="https://pay.kiwify.com.br/66crfxn?afid=EiYsjvBA" class="cta-button">COMEÇAR AGORA COM 7 BÔNUS!</a>
+      <img src="assets/formas-de-pagamento.png" alt="Formas de Pagamento">
+    </div>
+  </section>
+  <section class="depoimentos">
+    <h1>Pessoas reais que já tiveram resultados surpreendentes</h1>
+    <h1>
+      com as nossas Receitas:</h1>
+
+    <div class="videos">
+      <iframe width="380" height="225" src="https://www.youtube.com/embed/BPOiKdOpmiI" title="Depoimento da Barbara"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <iframe width="380" height="225" src="https://www.youtube.com/embed/86NY-od9j6I" title="Depoimento da Juliana"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <iframe width="380" height="225" src="https://www.youtube.com/embed/Agf5lxF5VOI" title="Depoimento da Raquel"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+  </section>
+  <section class="garantia">
+    <h1>RESULTADOS GARANTIDOS OU SEU DINHEIRO DE VOLTA!</h1>
+
+    <div class="divisao">
+
+      <div class="esq">
+        <img src="assets/garantia-7-dias.png" alt="">
+      </div>
+
+      <div class="dir">
+        <h2>Fique tranquilo(a), você não tem nada a perder...</h2>
+        <p>
+          Entendo que mesmo após as informações apresentadas, você pode ter dúvidas. No entanto, estamos aqui para
+          simplificar sua vida. Oferecemos a oportunidade de experimentar o programa "Emagrecer PRO" por 7 dias, com
+          todos
+          os brindes inclusos, para que você possa ver os resultados durante esse período. Caso não goste ou não se
+          adapte
+          por qualquer motivo, basta nos enviar um e-mail dentro desse prazo, e reembolsaremos integralmente o valor
+          pago.
+          Ao testar, você não assume nenhum risco. Bem, na verdade, há um risco positivo: o de, daqui a 30 dias,
+          alcançar
+          finalmente seus objetivos. Se não fizer nada, seu corpo permanecerá como está agora ou pior. Isso é realmente
+          o
+          que você deseja?</p>
+        <a href="https://pay.kiwify.com.br/66crfxn?afid=EiYsjvBA" class="cta-button">SENDO ASSIM, EU TOPO!</a>
+        <img src="assets/formas-de-pagamento.png" alt="Formas de Pagamento">
+      </div>
+    </div>
+  </section>
+  <section class="final">
+    <h1>O que você irá receber na oferta especial, somente HOJE:</h1>
+
+    <div class="beneficios">
+      <div class="benef-cards">
+        <p>
+          Emagracer PRO
+        </p>
+        <p>R$ 97,00</p>
+      </div>
+      <div class="benef-cards">
+        <p>
+          200 Receitas Low Carb
+        </p>
+        <p>R$ 49,90</p>
+      </div>
+      <div class="benef-cards">
+        <p>
+          Cardápio Completo
+        </p>
+        <p>R$ 89,90</p>
+      </div>
+      <div class="benef-cards">
+        <p>
+          7 Bônus
+        </p>
+        <p>R$ 127,90</p>
+      </div>
+    </div>
+
+    <p class="total">
+      VALOR TOTAL DO QUE VOCÊ IRÁ RECEBER = <span>R$ 364,70</span>
+    </p>
+
+    <div class="oferta">
+      <h3>
+        Mas com nossa <span>OFERTA</span> você não terá que pagar por tudo isso.
+      </h3>
+      <h3>seu investimento será de apenas:</h3>
+      <h2>R$ 39,90</h2>
+    </div>
+
+    <div class="botao">
+      <a href="https://pay.kiwify.com.br/66crfxn?afid=EiYsjvBA" class="cta-button">QUERO COMPRAR AGORA!</a>
+      <img src="assets/formas-de-pagamento.png" alt="Formas de Pagamento">
+    </div>
+
+
+  </section>
+  <div class="new-section">
+    <h1>PERGUNTAS FREQUENTES:</h1>
+  </div>
+  <section class="info">
+    <div class="cards">
+      <div class="pergunta">
+        <img src="assets/1checked.png" alt="Sinal de check">
+        <p><span>Como receberei o material?</span><br><br>
+
+          Após a confirmação do pagamento, enviamos nosso produto diretamente para o seu e-mail. Basta acessar e
+          realizar o download para iniciar o processo de transformação.</p>
+      </div>
+      <div class="pergunta">
+        <img src="assets/1checked.png" alt="Sinal de check">
+        <p><span>O Emagrecer PRO é para mim?</span><br><br>
+
+          Você luta contra aquela gordura resistente que não desaparece, mesmo com dieta e exercícios? Se sim, o guia
+          "Emagrecer PRO" foi desenvolvido especialmente para você! Já transformou a vida de inúmeras mulheres e homens,
+          abrangendo faixas etárias de 18 a 70 anos, e é projetado para ajudar a eliminar a gordura corporal, mesmo nos
+          casos mais desafiadores.</p>
+      </div>
+      <div class="pergunta">
+        <img src="assets/1checked.png" alt="Sinal de check">
+        <p><span>Não tenho muito tempo por dia. O programa vai me ajudar?</span><br><br>
+
+          Sim. Contamos com diversas clientes que desempenham jornadas de trabalho integral e mesmo assim conseguem
+          alcançar resultados notáveis.</p>
+      </div>
+      <div class="pergunta">
+        <img src="assets/1checked.png" alt="Sinal de check">
+        <p><span>Tenho que pagar mensalmente para continuar participando?</span><br><br>
+
+          Não, você realiza um único pagamento e terá acesso ao programa pelo tempo que desejar, sem encargos
+          adicionais.</p>
+      </div>
+      <div class="pergunta">
+        <img src="assets/1checked.png" alt="Sinal de check">
+        <p><span>Em quanto tempo começo a ver resultados?</span><br><br>
+
+          Observará resultados já nas primeiras semanas ao seguir nosso método passo a passo. Notará que suas roupas
+          começarão a ficar mais folgadas e experimentará uma redução significativa no inchaço.</p>
+      </div>
+      <div class="pergunta">
+        <img src="assets/1checked.png" alt="Sinal de check">
+        <p><span>Nunca fiz uma reeducação alimentar antes, será que eu consigo?</span><br><br>
+
+          Este programa é, sem dúvida, a opção mais adequada para você, pois representa a maneira mais simplificada de
+          alcançar resultados positivos. Você ficará encantado ao participar e aderir ao nosso programa.</p>
+      </div>
+    </div>
+    <a href="https://pay.kiwify.com.br/66crfxn?afid=EiYsjvBA" class="cta-button">SIM, O EMAGRECER PRO É PARA MIM!</a>
+  </section>
+  <footer>
+    <img src="assets/LOGO.png" alt="Logo">
+    <p>2022-2024 - Todos Direitos Reservados</p>
+    <p>E-mail de suporte: suporte.desafioemagrecerpro@gmail.com</p>
+    <small>Política de Privacidade:<br>
+
+      As informações que você fornece durante transações, como seu nome, endereço de e-mail ou quaisquer dados pessoais,
+      estão seguras conosco. Este documento estabelece nosso compromisso com a política de privacidade. Outras políticas
+      de privacidade podem ser aplicadas no futuro. Recomendamos que visite nosso site regularmente para se manter
+      atualizado sobre eventuais mudanças em nossas políticas de privacidade. Para mais informações, contate o E-mail de
+      suporte acima.</small>
+  </footer>
+</body>
+
+</html>
